@@ -1,0 +1,3 @@
+[submodule "mase-frontend"]
+	path = mase-frontend
+	url = https://github.com/AGES-PUCRS/mase-frontend.git
