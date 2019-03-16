@@ -1,1 +1,1 @@
-[Wiki do projeto](/wiki)
+[Wiki do projeto](wiki)
