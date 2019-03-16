@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+
+  keycloak:
+    environment:
+      - ENV=DEV
+    build:
+      context: .
+      dockerfile: ./resources/keyclock/keycloak.Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ./resources/proxy/conf/nginx.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - cdig-backend
+      - cdig-frontend
+    restart:
+      - always
+    networks:
+      - mase
+
+  postgresql:
+    image: postgres:11.1-alpine
+    environment:
+      PGDATA                : ${DB_PGDATA}
+      POSTGRES_DB           : ${DB_NAME}
+      POSTGRES_USER         : ${DB_USERNAME}
+      POSTGRES_PASSWORD     : ${BASE_PASSWORD}
+      POSTGRES_FIX_OWNERSHIP: 1
+    restart: always
+    volumes:
+      - pgdata:${DB_PGDATA}
+    networks:
+      - mase
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mase
+    restart: always
+    networks: 
+      - mase
+
+networks:
+  mase:
+
+volumes:
+  pgdata:
+    external: true
