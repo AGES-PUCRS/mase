@@ -1,1 +1,1 @@
-[Wiki do projeto](wiki)
+[Wiki do projeto](https://github.com/AGES-PUCRS/mase/wiki)
