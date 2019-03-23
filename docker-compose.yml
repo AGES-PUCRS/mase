@@ -3,41 +3,43 @@ version: "3"
 services:
 
   keycloak:
+    image: jboss/keycloak
     environment:
-      - ENV=DEV
-    build:
-      context: .
-      dockerfile: ./resources/keyclock/keycloak.Dockerfile
+      KEYCLOAK_USER         : mase
+      KEYCLOAK_PASSWORD     : mase
+      DB_VENDOR             : postgres
+      DB_ADDR               : postgres
+      DB_PORT               : 5432
+      DB_DATABASE           : mase
+      DB_USER               : mase
+      DB_PASSWORD           : mase
+      KEYCLOAK_HTTP_PORT    : 8080
     ports:
-      - 80:80
-    volumes:
-      - ./resources/proxy/conf/nginx.conf:/etc/nginx/conf.d/default.conf
+      - 8080:8080
+    restart: always
     links:
-      - cdig-backend
-      - cdig-frontend
-    restart:
-      - always
+      - postgres
     networks:
       - mase
 
-  postgresql:
-    image: postgres:11.1-alpine
+  postgres:
+    image: postgres:11.2
     environment:
-      PGDATA                : ${DB_PGDATA}
-      POSTGRES_DB           : ${DB_NAME}
-      POSTGRES_USER         : ${DB_USERNAME}
-      POSTGRES_PASSWORD     : ${BASE_PASSWORD}
+      PGDATA                : /pgdata
+      POSTGRES_DB           : mase
+      POSTGRES_USER         : mase
+      POSTGRES_PASSWORD     : mase
       POSTGRES_FIX_OWNERSHIP: 1
     restart: always
     volumes:
-      - pgdata:${DB_PGDATA}
+      - pgdata:/pgdata
     networks:
       - mase
 
   mongo:
     image: mongo
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_USERNAME: mase
       MONGO_INITDB_ROOT_PASSWORD: mase
     restart: always
     networks: 
