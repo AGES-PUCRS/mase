@@ -2,42 +2,26 @@ version: "3"
 
 services:
 
-  keycloak:
-    image: jboss/keycloak
+  postgresql:
     environment:
-      KEYCLOAK_USER         : mase
-      KEYCLOAK_PASSWORD     : mase
-      DB_VENDOR             : postgres
-      DB_ADDR               : postgres
-      DB_PORT               : 5432
-      DB_DATABASE           : mase
-      DB_USER               : mase
-      DB_PASSWORD           : mase
-      KEYCLOAK_HTTP_PORT    : 8080
-    ports:
-      - 8080:8080
-    restart: always
-    links:
-      - postgres
-    networks:
-      - mase
-
-  postgres:
-    image: postgres:11.2
-    environment:
-      PGDATA                : /pgdata
-      POSTGRES_DB           : mase
-      POSTGRES_USER         : mase
-      POSTGRES_PASSWORD     : mase
+      PGDATA                : ${PGDATA}
+      POSTGRES_DB           : ${POSTGRES_DB}
+      POSTGRES_USER         : ${POSTGRES_USER}
+      POSTGRES_PASSWORD     : ${POSTGRES_PASSWORD}
       POSTGRES_FIX_OWNERSHIP: 1
-    restart: always
+    build:
+      context: ./resources/database
+      dockerfile: postgresql/postgresql.Dockerfile
+    ports:
+      - 5432:5432
     volumes:
-      - pgdata:/pgdata
+      - ${PGDATA}:/${PGDATA}
     networks:
       - mase
+    restart: always
 
-  mongo:
-    image: mongo
+  mongodb:
+    image: mongo:3.6-stretch
     environment:
       MONGO_INITDB_ROOT_USERNAME: mase
       MONGO_INITDB_ROOT_PASSWORD: mase
@@ -49,5 +33,7 @@ networks:
   mase:
 
 volumes:
-  pgdata:
+  pgdata-mase:
     external: true
+# executar:
+# docker volume create pgdata-mase
