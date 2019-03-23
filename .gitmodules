@@ -4,3 +4,6 @@
 [submodule "mase-user-service"]
 	path = mase-user-service
 	url = https://github.com/AGES-PUCRS/mase-user-service
+[submodule "mase-auth-service"]
+	path = mase-auth-service
+	url = https://github.com/AGES-PUCRS/mase-auth-service.git
