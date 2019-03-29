@@ -2,19 +2,17 @@ version: "3"
 
 services:
 
-  postgresql:
+  postgresql-user:
+    image: postgres:11-alpine
     environment:
       PGDATA                : ${PGDATA}
       POSTGRES_DB           : ${POSTGRES_DB}
       POSTGRES_USER         : ${POSTGRES_USER}
       POSTGRES_PASSWORD     : ${POSTGRES_PASSWORD}
-      POSTGRES_FIX_OWNERSHIP: 1
-    build:
-      context: ./resources/database
-      dockerfile: postgresql/postgresql.Dockerfile
     ports:
       - 5432:5432
     volumes:
+      - ${SQLFILES}:/docker-entrypoint-initdb.d/
       - ${PGDATA}:/${PGDATA}
     networks:
       - mase
@@ -34,6 +32,6 @@ networks:
 
 volumes:
   pgdata-mase:
-    external: true
+    # external: true
 # executar:
 # docker volume create pgdata-mase
