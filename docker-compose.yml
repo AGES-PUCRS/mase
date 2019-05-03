@@ -2,22 +2,6 @@ version: "3"
 
 services:
 
-  # postgresql-user:
-  #   image: postgres:11-alpine
-  #   environment:
-  #     PGDATA                : ${PGDATA}
-  #     POSTGRES_DB           : ${POSTGRES_DB}
-  #     POSTGRES_USER         : ${POSTGRES_USER}
-  #     POSTGRES_PASSWORD     : ${POSTGRES_PASSWORD}
-  #   ports:
-  #     - 5432:5432
-  #   volumes:
-  #     - ${SQLFILES}:/docker-entrypoint-initdb.d/
-  #     - ${PGDATA}:/${PGDATA}
-  #   networks:
-  #     - mase
-  #   restart: always
-
   mongodb:
     image: docker-mongo
     environment:
@@ -38,6 +22,3 @@ networks:
 
 volumes:
   pgdata-mase:
-    # external: true
-# executar:
-# docker volume create pgdata-mase
