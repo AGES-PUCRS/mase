@@ -7,6 +7,7 @@
 [submodule "mase-auth-service"]
 	path = mase-auth-service
 	url = https://github.com/AGES-PUCRS/mase-auth-service.git
-[submodule "vendor/plugins/open_flash_chart_2"]
-	path = vendor/plugins/open_flash_chart_2
-	url = git://github.com/korin/open_flash_chart_2_plugin.git
+[submodule "mase-disaster-service"]
+	path = mase-disaster-service
+	url = https://github.com/AGES-PUCRS/mase-disaster-service.git
+
