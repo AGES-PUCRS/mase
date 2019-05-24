@@ -10,3 +10,6 @@
 [submodule "mase-disaster-service"]
 	path = mase-disaster-service
 	url = https://github.com/AGES-PUCRS/mase-disaster-service.git
+[submodule "mase-web"]
+	path = mase-web
+	url = ./mase-web
