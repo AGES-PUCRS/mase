@@ -1,4 +1,4 @@
-version: "3"
+version: "4"
 
 services:
 
@@ -13,8 +13,39 @@ services:
     build: 
       context: .
       dockerfile: dockerfile-mongo
-      args:
-        - -t docker-mongo 
+    
+  authservice:
+    image: auth-service
+    networks:
+      - mase
+    build:
+      context: ./mase-auth-service/
+      dockerfile: Dockerfile 
+
+  userservice:
+    image: user-service
+    networks:
+      - mase
+    build:
+      context: ./mase-user-service/
+      dockerfile: Dockerfile
+
+  planservice:
+    image: plan-service
+    networks:
+      - mase
+    build:
+      context: ./mase-plan-service/
+      dockerfile: Dockerfile
+
+  disasterservice:
+    image: disaster-service
+    networks:
+      - mase
+    build:
+      context: ./mase-disaster-service/
+      dockerfile: Dockerfile       
+
     
 
 networks:
