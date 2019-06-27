@@ -1,6 +1,3 @@
-[submodule "mase-frontend"]
-	path = mase-frontend
-	url = https://github.com/AGES-PUCRS/mase-frontend.git
 [submodule "mase-user-service"]
 	path = mase-user-service
 	url = https://github.com/AGES-PUCRS/mase-user-service
@@ -13,3 +10,6 @@
 [submodule "mase-web"]
 	path = mase-web
 	url = https://github.com/AGES-PUCRS/mase-web.git
+[submodule "mase-plan-service"]
+	path = mase-plan-service
+	url = https://github.com/AGES-PUCRS/mase-plan-service
