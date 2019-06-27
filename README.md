@@ -6,4 +6,4 @@
 1. cd mase/
 1. git submodule update --recursive --init
 1. git submodule foreach git checkout master 
-1. git submodule foreach git pull origin master` 
+1. git submodule foreach git pull origin master
