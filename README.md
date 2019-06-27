@@ -1,9 +1,8 @@
 [Wiki do projeto](https://github.com/AGES-PUCRS/mase/wiki)
 
-git submodule update --recursive --init
+### Comandos para clonar o repositório e seus reposítórios internos, e atualizár-los para branch mais atualizada.
 
-git submodule update 
-
-git submodule foreach git checkout dev 
-
-git submodule foreach git pull origin dev` 
+1. Clonar o projeto 
+1. dentro da pasta mase git submodule update --recursive --init
+1. git submodule foreach git checkout master 
+1. git submodule foreach git pull origin master` 
