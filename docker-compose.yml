@@ -4,9 +4,6 @@ services:
 
   masedb:
     image: docker-mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: mase
-      MONGO_INITDB_ROOT_PASSWORD: mase
     restart: always
     networks: 
       - mase
@@ -20,7 +17,9 @@ services:
       - mase
     build:
       context: ./mase-auth-service/
-      dockerfile: Dockerfile 
+      dockerfile: Dockerfile
+    ports:
+      - "8380:8080"   
 
   userservice:
     image: user-service
@@ -29,6 +28,8 @@ services:
     build:
       context: ./mase-user-service/
       dockerfile: Dockerfile
+    ports:
+      - "8381:8080"  
 
   planservice:
     image: plan-service
@@ -37,6 +38,8 @@ services:
     build:
       context: ./mase-plan-service/
       dockerfile: Dockerfile
+    ports:
+      - "8382:8080"  
 
   disasterservice:
     image: disaster-service
@@ -44,9 +47,10 @@ services:
       - mase
     build:
       context: ./mase-disaster-service/
-      dockerfile: Dockerfile       
+      dockerfile: Dockerfile
+    ports:
+      - "8383:8080"         
 
-    
 
 networks:
   mase:
